@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  prerequisite: MyText
+  category: MyString
+  location: MyString
+  created: 2019-04-26 08:53:45
+
+two:
+  name: MyString
+  prerequisite: MyText
+  category: MyString
+  location: MyString
+  created: 2019-04-26 08:53:45
