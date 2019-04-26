@@ -132,24 +132,14 @@ footer {
   color: $gray-light;
   
 }
-
-* {
-  box-sizing: border-box;
+footer h2{
+  text-align: left;
 }
-
-/* Create four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+.contact-details{
+  padding-top: 40px;
 }
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.button-expanded{
+  float: right;
 }
 
 /* forms */
