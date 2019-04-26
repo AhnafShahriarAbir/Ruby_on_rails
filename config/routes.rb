@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   resources :courses
+  resources :users
+  
+  get '/courses', to: 'courses#index'
 end
