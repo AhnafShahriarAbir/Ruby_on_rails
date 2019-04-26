@@ -3,10 +3,21 @@
     <%= link_to "yourcourse", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Category",   root_path  %></li>
-        <li><%= link_to "Locations",   help_path  %></li>
+         <li class="dropdown">
+           
+        <%= select("post", "name", Category.all.collect {|p| [ p.name ] }, {prompt: 'Category'})  %>
+              
+             
+          </li>
+        <li class="dropdown">
+           
+              <%= select("post", "place", Location.all.collect {|p| [ p.place ] }, {prompt: 'Locations'}) %>
+             
+          </li>
         <li><%= link_to "Log in", '#'  %></li>
+        
       </ul>
+    
     </nav>
   </div>
 </header>
