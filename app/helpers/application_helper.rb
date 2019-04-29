@@ -8,5 +8,9 @@ module ApplicationHelper
     else
       page_title + " | " + base_title
     end
+
+
+    session.delete(:user_id)
+ @current_user = nil
   end
 end
