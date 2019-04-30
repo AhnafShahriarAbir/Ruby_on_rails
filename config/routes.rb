@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :locations
-  resources :categories
+  
   get 'users/new'
 
   root 'static_pages#home'
@@ -16,8 +16,20 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  resources :courses
-  resources :users
+  resources :courses do
+    member do
+      get :roll
+    end
+  end
 
-  get '/courses', to: 'courses#index'
+  resources :categories do
+    member do
+      get :courses
+      post :course_add
+      post :course_remove
+    end
+  end
+
+
+  resources :users
 end

@@ -6,9 +6,18 @@
 </p>
 
 <p>
-  <strong>Course:</strong>
- <%= @category.course.name%>
+  <strong>Courses:</strong>
+ 	<%= @category.courses.name %>
+		
+		<% if !@category.courses.empty? %>
+			<%= @category.courses.collect {|c| 
+				link_to( c.name, c)}.join(",").html_safe %>
+		<% else %>
+			Not enrolled on any courses yet.
+		<% end %>
+	
 </p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Courses', courses_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

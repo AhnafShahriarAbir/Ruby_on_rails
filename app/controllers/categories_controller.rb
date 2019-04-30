@@ -61,6 +61,39 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def courses
+    @category = Category.find(params[:id])
+    @courses = @category.courses
+  end
+
+  def course_add
+    @category = Category.find(params[:id])
+    @course = Course.find(params[:course])
+    unless @category.enrolled_in?(@course)
+      @category.courses << @course
+      flash[:notice] = 'Category was successfully added'
+    else
+      flash[:error] = 'Category is already present'
+    end
+    redirect_to action: "courses", id: @category
+  end
+
+  def course_remove
+    @category = Category.find(params[:id])
+    course_ids= params[:courses] 
+    if course_ids.any? 
+      course_ids.each do |course_id| 
+        course = Course.find(course_id) 
+        if @category.enrolled_in?(course)
+          logger.info"Removing category from course #{course.id}"
+          @category.courses.delete(course) 
+          flash[:notice] = 'Course was successfully deleted'
+        end
+      end
+    end 
+    redirect_to action: "courses", id: @category 
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
