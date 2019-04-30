@@ -5,7 +5,10 @@
     This is the home page for RAD Assignment 2
   </h2>
 
-  <%= link_to "Sign up now", signup_path, class:"btn btn-lg btn-danger"%>
+    <button type="submit" class="btn btn-link" id=theredbutton>
+      <span class = "glyphicon glyphicon-education" id=whiteicon></span>
+        <%= link_to "Sign up now", signup_path %>
+    </button>
 
 </div>
 
@@ -13,12 +16,19 @@
         <div class="colum-left">
           <h2><b>View Course as Guest User</b></h2>
           <p>Browse and view courses as a guest<br> and sign up later</p>
-          <%= link_to "Browse all courses", courses_path, class:"btn btn-sm btn-success"%>
+          <button type="submit" class="btn btn-link" id=thegreenbutton>
+            <span class = "glyphicon glyphicon-education" id=whiteicons></span>
+          <%= link_to "Browse all courses", courses_path%>
+          </button>
         </div>
 
         <div class="column-right">
           <h2><b>Sign in to your account</b></h2>
           <p>Update your courses, rate courses, view <br>coordinator infomations</p>
-          <%= link_to "Log in to your account", login_path, class:"btn btn-sm btn-success"%>
+
+          <button type="submit" class="btn btn-link" id=thegreenbutton>
+            <span class = "glyphicon glyphicon-education" id=whiteicons></span>
+          <%= link_to "Log in to your account", login_path%>
+           </button>
         </div>
      </div>

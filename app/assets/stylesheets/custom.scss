@@ -114,7 +114,7 @@ p {
   margin-top:10px;
   margin-bottom: 10px;
   font-size: 1.7em;
-  color: white;
+  color: black;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding: 15px;
@@ -122,7 +122,7 @@ p {
   background-color: lightblue;
   border-radius: 10px;
   &:hover {
-    color: white;
+    color: black;
     text-decoration: none;
   }
 }
@@ -135,14 +135,46 @@ p {
 
 /*  The menu items on the bar  */
 #menuselection {
-  color: white;
+  color: black;
   margin-right: 10px;
   margin-top:10px;
   margin-bottom: 10px;
+  font-weight: bold;
   border-radius: 5px;
-  background-color: white;
+  background-color: lightblue;
 }
 
+#whiteicon {
+  color: black;
+}
+
+#theredbutton {
+  margin-right: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: pink;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding: 15px;
+  font-weight: bold;
+  background-color: pink;
+  border-radius: 10px;
+}
+
+#thegreenbutton {
+  margin-right: 5px;
+  margin-top:5px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding: 15px;
+  font-weight: bold;
+  background-color: green;
+  border-radius: 10px;
+}
 
 
 
