@@ -61,6 +61,16 @@ class CoursesController < ApplicationController
     end
   end
 
+  def category
+    @courses = Course.find(params[:id])
+    @category = @courses.category
+  end
+
+  def roll
+    @course = Course.find(params[:id])
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

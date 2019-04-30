@@ -18,8 +18,9 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.name %></td>
+        <td> <%= course.categories.count %> </td>
         <td><%= course.prerequisite %></td>
-        <td><%= course.category %></td>
+        <td><%= course.categories %></td>
         <td><%= course.location %></td>
         <td><%= course.created %></td>
         <td><%= link_to 'Show', course %></td>
