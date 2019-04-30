@@ -1,15 +1,15 @@
 
 
 
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse" id = "menubar">
   <div class="container">
     <%= link_to "yourcourse", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
 
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <li class="dropdown" id = "menuselection">
+          <a href= "#" class="dropdown-toggle" data-toggle="dropdown">
             Categories <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -22,7 +22,7 @@
         </li>
 
 
-        <li class="dropdown">
+        <li class="dropdown" id = "menuselection">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Locations <b class="caret"></b>
           </a>
@@ -35,7 +35,30 @@
         </li>
 
 
-       <li><%= link_to "Login", login_path %></li>
+
+       <% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+          <li class="dropdown" id = "menuselection">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" id = "menuselection">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+
+
+          <li id = "menuselection"><%= link_to "Log In", login_path %> </li>
+
+        <% end %>
+
+
 
 
       </ul>

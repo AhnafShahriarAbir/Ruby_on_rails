@@ -111,17 +111,40 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 15px;
+  padding: 15px;
   font-weight: bold;
+  background-color: lightblue;
+  border-radius: 10px;
   &:hover {
     color: white;
     text-decoration: none;
   }
 }
+
+/*  The black bar at the top  */
+#menubar {
+  background: black;
+  border: none;
+}
+
+/*  The menu items on the bar  */
+#menuselection {
+  color: white;
+  margin-right: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+
+
 
 /* footer */
 
