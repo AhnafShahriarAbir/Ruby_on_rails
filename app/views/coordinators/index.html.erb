@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Email</th>
       <th>Course</th>
       <th colspan="3"></th>
     </tr>
@@ -13,12 +14,13 @@
 
   <tbody>
     <% @coordinators.each do |coordinator| %>
+
       <tr>
-      	<%= gravatar_for_coor coordinator %>
+        <%= gravatar_for_coor coordinator %>
         <td><%= coordinator.name %></td>
+        <td><%= coordinator.email %></td>
         <td><%= link_to coordinator.course.name, coordinator.course %></td>
-        <td><%= link_to 'Show', coordinator %></td>
-        <td><%= link_to 'Edit', edit_coordinator_path(coordinator) %></td>
+        
         <td><%= link_to 'Destroy', coordinator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
