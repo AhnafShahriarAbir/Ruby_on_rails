@@ -3,4 +3,10 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> advanced-login
 end
