@@ -8,6 +8,7 @@
 
         <li class="dropdown" id = "menuselection">
           <a href= "#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class = "glyphicon glyphicon-education" id=whiteicons></span>
             Categories <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -22,6 +23,7 @@
 
         <li class="dropdown" id = "menuselection">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class = "glyphicon glyphicon-education" id=whiteicons></span>
             Locations <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -33,12 +35,13 @@
         </li>
 
 
-
        <% if logged_in? %>
 
-          <li><%= link_to "Users", '#' %></li>
+            <li id = "menuselection"><%= link_to "New Course", login_path %> </li>
+
           <li class="dropdown" id = "menuselection">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class = "glyphicon glyphicon-education" id=whiteicons></span>
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id = "menuselection">

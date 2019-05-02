@@ -176,6 +176,20 @@ p {
   border-radius: 10px;
 }
 
+#footerbackground {
+  font-weight: bold;
+
+}
+
+#courses {
+  color: black;
+  margin-right: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: lightgrey;
+}
 
 
 /* footer */
@@ -211,6 +225,19 @@ input {
 }
 
 /* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+
 #error_explanation {
   color: red;
   ul {
