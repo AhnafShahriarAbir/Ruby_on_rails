@@ -2,20 +2,29 @@
 
 <h1>Coordinators</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
- <% @coordinators.each do |coordinator| %>
-<% provide(:title, coordinator.given_name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for_coor coordinator %>
-        <%= coordinator.given_name %>
-      </h1>
-    </section>
-  </aside>
-</div>
-<% end %>
+  <tbody>
+    <% @coordinators.each do |coordinator| %>
+      <tr>
+      	<%= gravatar_for_coor coordinator %>
+        <td><%= coordinator.name %></td>
+        <td><%= link_to coordinator.course.name, coordinator.course %></td>
+        <td><%= link_to 'Show', coordinator %></td>
+        <td><%= link_to 'Edit', edit_coordinator_path(coordinator) %></td>
+        <td><%= link_to 'Destroy', coordinator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br>
 
 <%= link_to 'New Coordinator', new_coordinator_path %>

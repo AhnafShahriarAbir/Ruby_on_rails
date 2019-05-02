@@ -17,7 +17,7 @@ class CoordinatorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create coordinator" do
     assert_difference('Coordinator.count') do
-      post coordinators_url, params: { coordinator: { email: @coordinator.email, given_name: @coordinator.given_name } }
+      post coordinators_url, params: { coordinator: { course_id: @coordinator.course_id, name: @coordinator.name } }
     end
 
     assert_redirected_to coordinator_url(Coordinator.last)
@@ -34,7 +34,7 @@ class CoordinatorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update coordinator" do
-    patch coordinator_url(@coordinator), params: { coordinator: { email: @coordinator.email, given_name: @coordinator.given_name } }
+    patch coordinator_url(@coordinator), params: { coordinator: { course_id: @coordinator.course_id, name: @coordinator.name } }
     assert_redirected_to coordinator_url(@coordinator)
   end
 

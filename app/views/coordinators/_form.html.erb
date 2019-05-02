@@ -12,13 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :given_name %>
-    <%= form.text_field :given_name, id: :coordinator_given_name %>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :coordinator_name %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :coordinator_email %>
+    <%= form.text_field :email, id: :coordinator_name %>
+  </div>
+  <div class="field">
+    <%= form.label :course_id %>
+    <%= form.select :course_id, Course.all.order(:name).collect{|s|
+    [(s.name), s.id]}%>
+
   </div>
 
   <div class="actions">

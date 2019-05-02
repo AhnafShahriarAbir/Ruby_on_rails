@@ -69,6 +69,6 @@ class CoordinatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coordinator_params
-      params.require(:coordinator).permit(:given_name, :email)
+      params.require(:coordinator).permit(:name, :email, :course_id)
     end
 end
