@@ -18,7 +18,7 @@
       <%= @course.categories.collect {|c| 
         link_to( c.name, c)}.join(",").html_safe %>
     <% else %>
-      Not enrolled on any courses yet.
+      Not added to any category yet.
     <% end %>
   
 </p>
@@ -34,5 +34,5 @@
 </p>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Categories', categories_course_path(@course) %> |
+<%= link_to 'Add to Category', categories_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

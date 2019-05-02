@@ -1,4 +1,4 @@
-<h1> <%= @course.name %>'s categories </h1> 
+<h1> <%= @course.name %>'s category list </h1> 
 
 <% if @categories.length > 0 %> 
   <%= form_tag( category_remove_course_path(@course)) do %> 
@@ -22,7 +22,7 @@
          
   <% end %> 
 <% else %> 
-  <p> Not enrolled in any courses yet. </p> 
+  <p> Not added to any category yet. </p> 
 <% end %> 
     
 <h2> Enroll in new category </h2>
