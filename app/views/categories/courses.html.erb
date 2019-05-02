@@ -1,42 +1,39 @@
-<h1> <%= @category.name %>'s courses </h1>
+<h1> <%= "All courses in " + @category.name + " category "%> </h1> 
 
-<% if @category.courses.length > 0 %>
-
-<%= form_tag( course_remove_category_path(@category)) do %>
-
-<table>
-	<thead>
-		<tr>
-			<th> Course </th>
-			<th> Remove? </th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% for course in @courses do %>
-		<tr> <td> <%= course.name %> </td>
-			 <td> <%= check_box_tag "courses[]", course.id %> </td> 
-		</tr>
-		<% end %>
-	</tbody>
-
-</table > <br />
-
-<%= submit_tag 'Remove checked courses' %>
-
-<% end %>
-<% else %>
-	<p> Not enrolled in any courses yet. </p>
-<% end %>
-
+<% if @courses.length > 0 %> 
+  <%= form_tag( course_remove_category_path(@category)) do %> 
+  <table> 
+    <thead> 
+      <tr> 
+        <th> Course </th> 
+        <th> Remove? </th> 
+      </tr> 
+    </thead>
+    
+    <tbody> 
+    <% for course in @courses do %> 
+      <tr> <td> <%= course.name %> </td> 
+           <td> <%= check_box_tag "courses[]", course.id %> </td> </tr>
+    <% end %> 
+   </tbody> 
+   </table > <br /> 
+         
+    <%= submit_tag 'Remove checked courses' %>
+         
+  <% end %> 
+<% else %> 
+  <p> Not enrolled in any courses yet. </p> 
+<% end %> 
+    
 <h2> Enroll in new course </h2>
-<% if @category.courses.count < Course.count then %>
-<%= form_tag( course_add_category_path(@category)) do %>
-	<%= select_tag(:course, options_from_collection_for_select(@category.unenrolled_courses, :id, :name)) %>
-	<%= submit_tag 'Enroll' %>
-<% end %>
-<% else %>
 
-	<p> <%= @category.name %> is enrolled in every course. </p>
-<% end %>
+<% if @category.courses.count < Course.count then %> 
+  <%= form_tag( course_add_category_path(@category)) do %> 
+      <%= select_tag(:course, 
+          options_from_collection_for_select(@category.unenrolled_courses, :id, :name)) %> 
+      <%= submit_tag 'Add' %> 
+  <% end %> 
+<% else %> 
+  <p>Category already has all courses</p>
+<% end %> 
 <p> <%= link_to 'Back', @category %> </p>

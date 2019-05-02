@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   get 'sessions/new'
 
   resources :locations
@@ -18,7 +19,9 @@ Rails.application.routes.draw do
   
   resources :courses do
     member do
-      get :roll
+      get :categories
+      post :category_add
+      post :category_remove
     end
   end
 

@@ -68,6 +68,41 @@ class CoursesController < ApplicationController
     @categories = @course.categories
   end
 
+  def category_add 
+  #Convert ids from routing to objects 
+    @course = Course.find(params[:id])
+    @category = Category.find(params[:category])
+
+    unless @course.enrolled_in?(@category) 
+      #add course to list using << operator 
+      @course.categories << @category 
+      flash[:notice] = 'Course was successfully enrolled in category '
+    else 
+       flash[:error] = 'Course was already enrolled' 
+    end 
+    redirect_to action: "categories", id: @course 
+  end
+
+  def category_remove 
+  #Convert ids from routing to object 
+  @course = Course.find( params[:id]) 
+  
+  #get list of courses to remove from query string
+  category_ids = params[:categories] 
+  if category_ids.any? 
+    category_ids.each do |category_ids| 
+      category = Category.find(category_ids) 
+
+      if @course.enrolled_in?(category)
+        logger.info "Removing course from Category #{category.id}" 
+        @course.categories.delete(category) 
+        flash[:notice] = 'Category was successfully deleted'
+      end 
+    end 
+  end 
+  redirect_to action: "categories", id: @course 
+  end
+
   def roll
     @course = Course.find(params[:id])
   end

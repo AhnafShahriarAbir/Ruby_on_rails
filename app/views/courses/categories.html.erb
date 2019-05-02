@@ -1,0 +1,38 @@
+<h1> <%= @course.name %>'s categories </h1> 
+
+<% if @categories.length > 0 %> 
+  <%= form_tag( category_remove_course_path(@course)) do %> 
+  <table> 
+    <thead> 
+      <tr> 
+        <th> Category </th> 
+        <th> Remove? </th> 
+      </tr> 
+    </thead>
+    
+    <tbody> 
+    <% for category in @categories do %> 
+      <tr> <td> <%= category.name %> </td> 
+           <td> <%= check_box_tag "categories[]", category.id %> </td> </tr>
+    <% end %> 
+   </tbody> 
+   </table > <br /> 
+         
+    <%= submit_tag 'Remove checked categories' %>
+         
+  <% end %> 
+<% else %> 
+  <p> Not enrolled in any courses yet. </p> 
+<% end %> 
+    
+<h2> Enroll in new category </h2>
+
+<% if @course.categories.count < Category.count then %> 
+  <%= form_tag( category_add_course_path(@course)) do %> 
+      <%= select_tag(:category, 
+          options_from_collection_for_select(@course.unenrolled_categories, :id, :name)) %> 
+      <%= submit_tag 'Enroll' %> 
+  <% end %> 
+<% else %> 
+<% end %> 
+<p> <%= link_to 'Back', @course %> </p>

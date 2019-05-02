@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  course_id: 1
+  courses: MyString
 
 two:
   name: MyString
-  course_id: 1
+  courses: MyString
