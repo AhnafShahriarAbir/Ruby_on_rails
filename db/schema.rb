@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20190502131821) do
-=======
-ActiveRecord::Schema.define(version: 20190502073529) do
->>>>>>> advanced-login
+ActiveRecord::Schema.define(version: 20190502174820) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -38,11 +34,21 @@ ActiveRecord::Schema.define(version: 20190502073529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "courses_locations", id: false, force: :cascade do |t|
+    t.integer "location_id", null: false
+    t.integer "course_id", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
-    t.string "place"
-    t.integer "course_id"
+    t.string "name"
+    t.string "courses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations_courses", id: false, force: :cascade do |t|
+    t.integer "location_id", null: false
+    t.integer "course_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
