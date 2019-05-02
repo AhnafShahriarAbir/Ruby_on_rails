@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Name:</strong>
   <%= @course.name %>
@@ -12,7 +13,16 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @course.category %>
+  
+  <%= @course.categories.name %>
+    
+    <% if !@course.categories.empty? %>
+      <%= @course.categories.collect {|c| 
+        link_to( c.name, c)}.join(",").html_safe %>
+    <% else %>
+      Not enrolled on any courses yet.
+    <% end %>
+  
 </p>
 
 <p>

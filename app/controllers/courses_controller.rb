@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token 
 
   # GET /courses
   # GET /courses.json
@@ -10,6 +11,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course = Course.find(params[:id])
   end
 
   # GET /courses/new
@@ -61,9 +63,9 @@ class CoursesController < ApplicationController
     end
   end
 
-  def category
-    @courses = Course.find(params[:id])
-    @category = @courses.category
+  def categories
+    @course = Course.find(params[:id])
+    @categories = @course.categories
   end
 
   def roll
