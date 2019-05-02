@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Place:</strong>
-  <%= @location.place %>
+  <strong>Room no:</strong>
+  <%= @location.name %>
 </p>
 
 <p>
-  <strong>Course:</strong>
-  <%= @location.course.name%>
+  <strong>Locations:</strong>
+    <% if !@location.courses.empty? %>
+      <%= @location.courses.collect {|c| 
+        link_to( c.name, c)}.join(",").html_safe %>
+    <% else %>
+      No courses assigned on this room yet.
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Add courses ', courses_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

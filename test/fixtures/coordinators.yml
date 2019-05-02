@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  courses: MyString
+  email: MyString
+  course_id: 1
 
 two:
   name: MyString
-  courses: MyString
+  email: MyString
+  course_id: 1

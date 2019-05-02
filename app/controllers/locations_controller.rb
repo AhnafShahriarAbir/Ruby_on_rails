@@ -61,6 +61,44 @@ class LocationsController < ApplicationController
     end
   end
 
+  def courses
+    @location = Location.find(params[:id])
+    @courses = @location.courses
+  end
+
+  def course_add 
+  #Convert ids from routing to objects 
+  @location = Location.find(params[:id])
+  @course = Course.find(params[:course])
+  unless @location.enrolled_in?(@course) 
+    #add course to list using << operator 
+    @location.courses << @course 
+    flash[:notice] = 'Location was successfully enrolled' 
+  else 
+     flash[:error] = 'Location was already enrolled' 
+  end 
+  redirect_to action: "courses", id: @location 
+  end
+
+  def course_remove 
+  #Convert ids from routing to object 
+  @location = Location.find( params[:id]) 
+  
+  #get list of courses to remove from query string
+  course_ids = params[:courses] 
+  if course_ids.any? 
+    course_ids.each do |course_id| 
+      course = Course.find(course_id) 
+      if @location.enrolled_in?(course)
+        logger.info "Removing location from course #{course.id}" 
+        @location.courses.delete(course) 
+        flash[:notice] = 'Course was successfully deleted'
+      end 
+    end 
+  end 
+  redirect_to action: "courses", id: @location 
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
@@ -69,6 +107,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:place, :course_id)
+      params.require(:location).permit(:name, :courses)
     end
 end

@@ -1,8 +1,8 @@
-<h1> <%= "All courses in " + @category.name + " category "%> </h1> 
+<h1> <%= "Courses scheduled in location " + @location.name %> </h1> 
 
-<% if @category.courses.length > 0 %>
+<% if @location.courses.length > 0 %>
 
-<%= form_tag( course_remove_category_path(@category)) do %>
+<%= form_tag( course_remove_location_path(@location)) do %>
 
 <table>
 	<thead>
@@ -32,13 +32,13 @@
 
 <h2> Enroll in new course </h2>
 
-<% if @category.courses.count < Course.count then %> 
-  <%= form_tag( course_add_category_path(@category)) do %> 
+<% if @location.courses.count < Course.count then %> 
+  <%= form_tag( course_add_location_path(@location)) do %> 
       <%= select_tag(:course, 
-          options_from_collection_for_select(@category.unenrolled_courses, :id, :name)) %> 
+          options_from_collection_for_select(@location.unenrolled_courses, :id, :name)) %> 
       <%= submit_tag 'Add' %> 
   <% end %> 
 <% else %> 
   <p>Category already has all courses</p>
 <% end %> 
-<p> <%= link_to 'Back', @category %> </p>
+<p> <%= link_to 'Back', @location %> </p>

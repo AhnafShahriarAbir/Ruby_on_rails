@@ -21,15 +21,6 @@
     <%= form.text_area :prerequisite, id: :course_prerequisite %>
   </div>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select:category_id, Category.all.order(:name).collect{|s| [( s.name), s.id]}%> 
-  </div>
-
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, id: :course_location %>
-  </div>
 
   <div class="field">
     <%= form.label :created %>

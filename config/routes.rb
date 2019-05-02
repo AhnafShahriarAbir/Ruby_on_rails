@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  
+  resources :coordinators
   get 'sessions/new'
 
-  resources :locations
   
   get 'users/new'
 
@@ -16,20 +17,18 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  resources :courses do
-    member do
-      get :roll
-    end
-  end
+ 
 
-  resources :categories do
+  resources :locations, :categories, :courses do
     member do
+      get :categories
       get :courses
       post :course_add
       post :course_remove
+      post :category_add
+      post :category_remove
     end
   end
-
 
   resources :users
 end
