@@ -172,7 +172,7 @@ p {
   letter-spacing: -1px;
   padding: 15px;
   font-weight: bold;
-  background-color: green;
+  background-color: lightgreen;
   border-radius: 10px;
 }
 
@@ -231,4 +231,18 @@ input {
 }
 .column-right{
   float:right;
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
 }
