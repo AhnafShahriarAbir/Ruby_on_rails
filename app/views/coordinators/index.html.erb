@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Coordinators</h1>
+
+
+ <% @coordinators.each do |coordinator| %>
+<% provide(:title, coordinator.given_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for_coor coordinator %>
+        <%= coordinator.given_name %>
+      </h1>
+    </section>
+  </aside>
+</div>
+<% end %>
+<br>
+
+<%= link_to 'New Coordinator', new_coordinator_path %>
