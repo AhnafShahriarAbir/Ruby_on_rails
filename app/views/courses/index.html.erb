@@ -31,13 +31,21 @@
           <p>Category: <%= course.prerequisite %>
           <%= course.categories.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
-
+          
           <p>Location: <%= course.locations.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
           <p> Created: <%= time_ago_in_words(course.created) %></p>
           <%= link_to 'Edit', edit_course_path(course) %>
-          <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <button type="button" 
+        id="testBtn" 
+        class="btn btn-success glyphicon glyphicon-thumbs-up" 
+              data-loading-text=" ... ">
+          4</button>
+      <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
+          4</button>
         </div><br><br>
+
 
   </div>
 
