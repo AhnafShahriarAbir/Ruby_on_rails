@@ -15,7 +15,8 @@
 
     <div class="gravatardetails" >
 
-where gravatar goes
+     <%= course.coordinators.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %></p>
 
 
       </div><br><br>
