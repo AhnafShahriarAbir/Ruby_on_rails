@@ -3,45 +3,45 @@
 <h1>All Courses</h1>
 <%= render 'course_nav' %>
 
-<li class="dropdown" id = "courses">
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Prerequisites</th>
-      <th>Category</th>
-      <th>Location</th>
-      <th>Created</th>
-      
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @courses.each do |course| %>
 
-      <tr>
-        <td><%= course.name %></td>
-        <td><%= course.prerequisite %> </td>
-        <td><%= course.categories.collect {|c| 
-            link_to( c.name, c)}.join(", ").html_safe %></td>
-        <td><%= course.location %></td>
-        <td><%= course.created %></td>
-        <td><%= course.prerequisite %></td>
-        
-       
-        <td><%= course.locations.collect {|c| 
-            link_to( c.name, c)}.join(", ").html_safe %></td>
-        <td><%= course.created %></td>
 
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
 
-  </tbody>
-</table>
-</li>
+  <% @courses.each do |course| %>
+
+<div class="row">
+
+  <div class="col-md-4">
+
+    <div class="gravatardetails" >
+
+where gravatar goes
+
+
+      </div><br><br>
+
+  </div>
+
+  <div class="col-md-8" >
+
+      <div class="details" >
+          <p>Name:  <%= link_to course.name, course %></p>
+          <p>Category: <%= course.prerequisite %>
+          <%= course.categories.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %></p>
+
+          <p>Location: <%= course.locations.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %></p>
+          <p> Created: <%= time_ago_in_words(course.created) %></p>
+          <%= link_to 'Edit', edit_course_path(course) %>
+          <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div><br><br>
+
+  </div>
+
+</div>
+<% end %>
+
 
 
 <%= link_to 'New Course', new_course_path %>
-
