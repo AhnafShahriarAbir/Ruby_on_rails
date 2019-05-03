@@ -20,7 +20,6 @@
     <% @courses.each do |course| %>
 
       <tr>
-<<<<<<< HEAD
         <td><%= course.name %></td>
         <td><%= course.prerequisite %> </td>
         <td><%= course.categories %></td>
@@ -28,7 +27,7 @@
         <td><%= course.created %></td>
 
         <td><%= link_to 'Show', course %></td>
-=======
+
         <td><%= link_to course.name, course %></td>
         <td><%= course.prerequisite %></td>
         <td><%= course.categories.collect {|c| 
@@ -37,7 +36,7 @@
         <td><%= course.locations.collect {|c| 
             link_to( c.name, c)}.join(", ").html_safe %></td>
         <td><%= course.created %></td>
->>>>>>> master
+
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
