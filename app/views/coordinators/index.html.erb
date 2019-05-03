@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Coordinators</h1>
+<%= render 'course_nav' %>
 
 <table>
   <thead>
@@ -20,7 +21,7 @@
         <td><%= coordinator.name %></td>
         <td><%= coordinator.email %></td>
         <td><%= link_to coordinator.course.name, coordinator.course %></td>
-        
+
         <td><%= link_to 'Destroy', coordinator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
