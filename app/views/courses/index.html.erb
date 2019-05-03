@@ -22,16 +22,12 @@
       <tr>
         <td><%= course.name %></td>
         <td><%= course.prerequisite %> </td>
-        <td><%= course.categories %></td>
-        <td><%= course.location %></td>
-        <td><%= course.created %></td>
-
-        <td><%= link_to 'Show', course %></td>
-
-        <td><%= link_to course.name, course %></td>
-        <td><%= course.prerequisite %></td>
         <td><%= course.categories.collect {|c| 
             link_to( c.name, c)}.join(", ").html_safe %></td>
+        <td><%= course.location %></td>
+        <td><%= course.created %></td>
+        <td><%= course.prerequisite %></td>
+        
        
         <td><%= course.locations.collect {|c| 
             link_to( c.name, c)}.join(", ").html_safe %></td>
