@@ -12,10 +12,11 @@
             Categories <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Web Developement", "#"%></li>
-            <li><%= link_to "Java", '#' %></li>
-            <li><%= link_to "Full Stack Dev", '#' %></li>
-            <li><%= link_to "iOS Engineering", '#' %></li>
+            <li> <a><% Category.all.each do |category| %>
+                  <%= link_to category.name, category %>
+                 <% end %> </a>
+            </li>
+            
             <li class="divider"></li>
           </ul>
         </li>
@@ -27,9 +28,10 @@
             Locations <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "14.10.31", '#'%></li>
-            <li><%= link_to "14.08.26", '#' %></li>
-            <li><%= link_to "14.08.30", '#' %></li>
+            <li> <% Location.all.each do |location| %>
+                  <%= link_to location.name, location %>
+                 <% end %> 
+            </li>
             <li class="divider"></li>
           </ul>
         </li>
