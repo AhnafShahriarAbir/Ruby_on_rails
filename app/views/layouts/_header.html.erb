@@ -16,7 +16,7 @@
                   <%= link_to category.name, category %>
                  <% end %> </a>
             </li>
-            
+
             <li class="divider"></li>
           </ul>
         </li>
@@ -30,7 +30,7 @@
           <ul class="dropdown-menu">
             <li> <% Location.all.each do |location| %>
                   <%= link_to location.name, location %>
-                 <% end %> 
+                 <% end %>
             </li>
             <li class="divider"></li>
           </ul>
@@ -40,11 +40,11 @@
        <% if logged_in? %>
 
           <li id = "menuselection"><%= link_to "New Course", new_course_path %> </li>
-     
+
           <li class="dropdown" id = "menuselection">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span class = "glyphicon glyphicon-education" id=whiteicons></span>
-              Account <b class="caret"></b>
+              <%= @current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id = "menuselection">
               <li><%= link_to "Profile", current_user %></li>
