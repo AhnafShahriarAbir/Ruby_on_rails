@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Courses in <%= @category.name %> </h1>
+
 <% if @category.courses.count < 1 %>
   <h4 style="text-align: center;">No courses are allocated to this category.</h4>
 
 <% else %>
-
   <% @category.courses.each do |course| %>
+  <%= render 'category.nav' %>
   <div class="row">
 
     <div class="col-md-4">

@@ -29,15 +29,16 @@
           <p>Location: <%= course.locations.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
           <p> Created: <%= time_ago_in_words(course.created) %></p>
-          <div class="pull-right">
+        
+           <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down pull-right" data-loading-text=" ... ">
+            4</button>
             <button type="button" 
               id="testBtn" 
-              class="btn btn-success glyphicon glyphicon-thumbs-up" 
+              class="btn btn-success glyphicon glyphicon-thumbs-up pull-right"
                     data-loading-text=" ... ">
             4</button>
-            <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-            4</button>
-            </div>
+         
+           
         </div><br><br>
 
 
