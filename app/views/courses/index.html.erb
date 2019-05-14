@@ -13,15 +13,9 @@
 <div class="row">
 
   <div class="col-md-4">
-
-    <div class="gravatardetails" >
-    <%= gravatar_for_coor course.coordinators %>
-        <p><%= course.coordinators.collect {|c|
-              link_to( c.name, c)}.join(", ").html_safe %></p>
-          
-          
-      </div><br><br>
-
+      <p><%= gravatar_for_coor course.coordinators %></p></br>
+      <p><%= course.coordinators.collect {|c|
+            link_to( c.name, c)}.join(", ").html_safe %></p>
   </div>
 
   <div class="col-md-8" >

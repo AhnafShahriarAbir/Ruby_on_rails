@@ -1,8 +1,17 @@
-<p>
-
-<div  id = footerbackground>
-  <%= link_to "Courses", courses_path %> |
-  <%= link_to "Coordinators", coordinators_path %>
-</div>
-
 <hr>
+<ul class="nav nav-tabs">
+  <li class="active" > <a > <%= link_to "Courses", courses_path %></a></li>
+  <li><a data-toggle="tab"><%= link_to "Coordinators", coordinators_path %></a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="courses" class="tab-pane fade in active">
+    
+  </div>
+
+  <div id="coordinators" class="tab-pane fade">
+    
+  </div>
+</div>
+<br>
+
