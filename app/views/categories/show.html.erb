@@ -1,29 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Category</h1>
+<h1>Courses in <%= @category.name %> </h1>
+<% if @category.courses.count < 1 %>
+  <h4 style="text-align: center;">No courses are allocated to this category.</h4>
 
-<div class="row">
-<div class="col-md-8" >
+<% else %>
 
-      <div class="details" >
-		<p>
-		  <strong>Name:</strong>
-		  <%= @category.name %>
-		</p>
+  <% @category.courses.each do |course| %>
+  <div class="row">
 
-		<p>
-		  <strong>Courses:</strong>
-		    <% if !@category.courses.empty? %>
-		      <%= @category.courses.collect {|c| 
-		        link_to( c.name, c)}.join(",").html_safe %>
-		    <% else %>
-		      Not enrolled on any courses yet.
-		    <% end %>
-		</p>
-	</div>
-</div>
-</div>
+    <div class="col-md-4">
+      <div class="gravatardetails" >
+        <%= gravatar_for_coor course.coordinators %>
+        <p><%= course.coordinators.collect {|c|
+                link_to( c.name, c)}.join(", ").html_safe %></p>
+        </div><br><br>
+    </div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Add courses ', courses_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+    <div class="col-md-8" >
+
+        <div class="details" >
+            <p>Name:  <%= link_to course.name, course %></p>
+            <p>Category: <%= course.prerequisite %>
+            <%= course.categories.collect {|c|
+                link_to( c.name, c)}.join(", ").html_safe %></p>
+            
+            <p>Location: <%= course.locations.collect {|c|
+                link_to( c.name, c)}.join(", ").html_safe %></p>
+            <p> Created: <%= time_ago_in_words(course.created) %></p>
+            <div class="float-right" >
+              <button type="button" 
+                id="testBtn" 
+                class="btn btn-success glyphicon glyphicon-thumbs-up "  
+                      data-loading-text=" ... ">
+              4</button>
+              <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
+              4</button>
+            </div>
+        </div><br><br>
+    </div>
+  </div>
+  <% end %>
+
+<% end %>

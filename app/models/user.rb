@@ -2,7 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { minimum: 1}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@rmit.edu+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@rmit.edu.au\z/i
   validates :email, presence: true, length: { minimum: 4 },
                     format: { with: VALID_EMAIL_REGEX, message: 'registration must be from RMIT personel' },
                     uniqueness: { case_sensitive: false }

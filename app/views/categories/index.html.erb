@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<h1>Courses in <%= @categories.name%></h1>
 
  <% @categories.each do |category| %>
  <div class="row">
@@ -10,14 +10,11 @@
    
             <p>Category Name: <%= link_to category.name, category %></p>
               <p>Courses: <%= category.courses.collect {|c| 
-              link_to( c.name, c)}.join(",").html_safe %></p><br>
+              link_to( c.name, c)}.join(" , ").html_safe %></p><br>
               
-
-              <p><%= link_to 'Edit', edit_category_path(category) %></p>
-              <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div> <br><br>
   </div>
 </div>
 <% end %>
 
-<%= link_to 'New Category', new_category_path %>
+
