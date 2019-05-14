@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190502185801) do
+ActiveRecord::Schema.define(version: 20190514214625) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "courses"
+    t.string "category"
+    t.string "location"
+    t.datetime "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,11 +56,6 @@ ActiveRecord::Schema.define(version: 20190502185801) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "locations_courses", id: false, force: :cascade do |t|
-    t.integer "location_id", null: false
-    t.integer "course_id", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -66,6 +63,7 @@ ActiveRecord::Schema.define(version: 20190502185801) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
