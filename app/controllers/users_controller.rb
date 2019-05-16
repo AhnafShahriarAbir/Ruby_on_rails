@@ -4,11 +4,10 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    
-  end
-  
-  def show
     @users = User.all
+  end
+
+  def show
   end
 
   def new
