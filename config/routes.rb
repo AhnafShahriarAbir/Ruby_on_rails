@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  #resources :coordinators
-  #get 'sessions/new'
+#  resources :coordinators
+#  get 'sessions/new'
 
 
-  get 'users/new'
+#  get 'users/new'
 
   root 'static_pages#home', controller: "application#index"
   get  '/signup',  to: 'users#new'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  
+
 
 
   resources :locations, :categories, :courses do

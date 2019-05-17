@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
 
   # GET /courses
   # GET /courses.json
@@ -68,39 +68,39 @@ class CoursesController < ApplicationController
     @categories = @course.categories
   end
 
-  def category_add 
-  #Convert ids from routing to objects 
+  def category_add
+  #Convert ids from routing to objects
     @course = Course.find(params[:id])
     @category = Category.find(params[:category])
 
-    unless @course.enrolled_in?(@category) 
-      #add course to list using << operator 
-      @course.categories << @category 
+    unless @course.enrolled_in?(@category)
+      #add course to list using << operator
+      @course.categories << @category
       flash[:notice] = 'Course was successfully enrolled in category '
-    else 
-       flash[:error] = 'Course was already enrolled' 
-    end 
-    redirect_to action: "categories", id: @course 
+    else
+       flash[:error] = 'Course was already enrolled'
+    end
+    redirect_to action: "categories", id: @course
   end
 
-  def category_remove 
-  #Convert ids from routing to object 
-  @course = Course.find( params[:id]) 
-  
+  def category_remove
+  #Convert ids from routing to object
+  @course = Course.find( params[:id])
+
   #get list of courses to remove from query string
-  category_ids = params[:categories] 
-  if category_ids.any? 
-    category_ids.each do |category_ids| 
-      category = Category.find(category_ids) 
+  category_ids = params[:categories]
+  if category_ids.any?
+    category_ids.each do |category_ids|
+      category = Category.find(category_ids)
 
       if @course.enrolled_in?(category)
-        logger.info "Removing course from Category #{category.id}" 
-        @course.categories.delete(category) 
+        logger.info "Removing course from Category #{category.id}"
+        @course.categories.delete(category)
         flash[:notice] = 'Category was successfully deleted'
-      end 
-    end 
-  end 
-  redirect_to action: "categories", id: @course 
+      end
+    end
+  end
+  redirect_to action: "categories", id: @course
   end
 
   def roll
@@ -116,6 +116,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :prerequisite, :category, :location, :created)
+      params.require(:course).permit(:user_id ,:name, :prerequisite, :category, :location, :created)
     end
 end

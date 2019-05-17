@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1>All Coordinators</h1>
+<%= render 'course_nav' %>
+
+   <% @users.each do |users| %>
+  <div class="row">
+    <div class="col-md-8" >
+
+        <%= gravatar_for users %><br>
+        <p>Username: <%= users.name %></p>
+        <p>Email: <%= users.email %></p>
+        
+        <p><%= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+     <br><br>
+    </div>
+  </div>
+<% end %>
+
+
+
+<%= link_to 'New user', new_user_path %>
