@@ -8,7 +8,7 @@
 
 
 
-  <% @courses.each do |course| %>
+<% @courses.each do |course| %>
 
 <div class="row">
 
@@ -37,8 +37,14 @@
               class="btn btn-success glyphicon glyphicon-thumbs-up pull-right"
                     data-loading-text=" ... ">
             4</button>
-         
-           
+            
+           <%# <% @users.each do |user| %>
+              <%# if current_user.admin? && !current_user?(user) %>
+                <%# link_to 'Edit', edit_course_path(@course) %>
+                <%# link_to "delete", delete, method: :delete,
+                                          data: { confirm: "You sure?" } %>
+              <%# end %>
+            <%# end %>
         </div><br><br>
 
 

@@ -1,21 +1,23 @@
 class ContactController < ApplicationController
+  def index 
+  end
+
   def new
+   
   end
 
   def edit
   end
   
-  def create 
-    @user = User.find_by(email: params[:email].downcase)
-    if @user
-      @user.create_reset_digest
-      @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
-      redirect_to root_url
-    else
-      flash.now[:danger] = "Email address not found"
-      render 'new'
-    end
+  def create     
+    email = params[:contact][:email]
+
+    @debug = email 
+    UserMailer.send_mail(email).deliver_now
+    
+    flash[:info] = "Thanks for your feedback!!"
+    redirect_to root_url
+    
   end
 
 end

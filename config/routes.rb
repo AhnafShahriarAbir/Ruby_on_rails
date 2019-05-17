@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   end
   resources :users
 
-  resources :contact, only: [:new, :edit, :create]
+  resources :contact, only: [:new, :create, :edit ]
 end
