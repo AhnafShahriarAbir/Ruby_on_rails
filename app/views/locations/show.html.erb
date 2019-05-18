@@ -5,7 +5,7 @@
 <p>
   <strong>Locations:</strong>
     <% if !@location.courses.empty? %>
-      <%= @location.courses.collect {|c| 
+      <%= @location.courses.collect {|c|
         link_to( c.name, c)}.join(",").html_safe %>
     <% else %>
       No courses assigned on this room yet.
@@ -19,14 +19,14 @@
 
 <% else %>
   <% @location.courses.each do |course| %>
-  
+
   <div class="row">
 
     <div class="col-md-4">
       <div class="gravatardetails" >
-        <%= gravatar_for_coor course.coordinators %>
-        <p><%= course.coordinators.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
+        <%= gravatar_for User.find(course.user_id) %>
+        <%=  User.find(course.user_id).name %>
+
         </div><br><br>
     </div>
 
@@ -38,14 +38,14 @@
             <p>Category: <%= course.prerequisite %>
             <%= course.categories.collect {|c|
                 link_to( c.name, c)}.join(", ").html_safe %></p>
-            
+
             <p>Location: <%= course.locations.collect {|c|
                 link_to( c.name, c)}.join(", ").html_safe %></p>
             <p><%= time_ago_in_words(course.created) +" ago" %></p>
             <div class="float-right" >
-              <button type="button" 
-                id="testBtn" 
-                class="btn btn-success glyphicon glyphicon-thumbs-up "  
+              <button type="button"
+                id="testBtn"
+                class="btn btn-success glyphicon glyphicon-thumbs-up "
                       data-loading-text=" ... ">
               4</button>
               <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
