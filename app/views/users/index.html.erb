@@ -4,13 +4,12 @@
 <h1>All Coordinators</h1>
 <%= render 'course_nav' %>
 
-   <% @users.each do |users| %>
+   <% @users.each do |user| %>
   <div class="row">
     <div class="col-md-8" >
 
-        <%= gravatar_for users %><br>
-        <p>Username: <%= users.name %></p>
-        <p>Email: <%= users.email %></p>
+        <%= gravatar_for user %><br>
+        <p>Coordinator name: <%= user.name %></p>
 
      <br><br>
     </div>
