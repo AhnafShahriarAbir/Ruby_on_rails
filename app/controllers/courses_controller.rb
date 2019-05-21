@@ -102,10 +102,23 @@ class CoursesController < ApplicationController
   end
   redirect_to action: "categories", id: @course
   end
-  
+
   def roll
     @course = Course.find(params[:id])
   end
+
+
+# method for thumbs increase and decrease number
+def courses_thumbsup
+  
+end
+
+def courses_thumbsdown
+
+end
+
+
+
 
 
   private

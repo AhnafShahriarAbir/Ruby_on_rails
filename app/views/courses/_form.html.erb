@@ -2,42 +2,26 @@
 
 
 <%= form_with(model: course, local: true) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-      <% course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-#save the user here
+
   <%=form.hidden_field :user_id, value: current_user.id %>
 
-
-
-
-
-  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :course_name %>
-  </div>
 
-  <div class="field">
     <%= form.label :prerequisite %>
     <%= form.text_area :prerequisite, id: :course_prerequisite %>
-  </div>
+
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :course_description %>
 
 
-  <div class="field">
     <%= form.label :created %>
     <%= form.datetime_select :created, id: :course_created %>
-  </div>
 
-  <div class="actions">
+
+
     <%= form.submit %>
-  </div>
+
 <% end %>
