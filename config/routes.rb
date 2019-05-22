@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :locations, :categories, :courses do
+  resources :locations, :categories,:courses do
     member do
       get :categories
       get :courses
