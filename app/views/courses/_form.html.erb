@@ -2,23 +2,32 @@
 
 
 <%= form_with(model: course, local: true) do |form| %>
-
+<%= render 'shared/error_messages0', object: @course %>
 
 
   <%=form.hidden_field :user_id, value: current_user.id %>
 
     <%= form.label :name %>
-    <%= form.text_field :name, id: :course_name %>
+    <%= form.text_field :name, class: 'form-control' %>
 
     <%= form.label :prerequisite %>
-    <%= form.text_area :prerequisite, id: :course_prerequisite %>
+    <%= form.text_area :prerequisite, class: 'form-control' %>
 
     <%= form.label :description %>
-    <%= form.text_area :description, id: :course_description %>
+    <%= form.text_area :description, class: 'form-control' %>
 
 
-    <%= form.label :created %>
-    <%= form.datetime_select :created, id: :course_created %>
+<%= form.label :Category %>
+    <% Category.all.each do |category| %>
+       <%= category.name %>
+          <%= form.check_box :category_id,{ multiple: true }, category.id %>
+    <% end %>
+
+    <%= form.label :Location %>
+        <% Location.all.each do |location| %>
+           <%= location.name %>
+              <%= form.check_box :location_id,{ multiple: true }, location.id %>
+        <% end %>
 
 
 
