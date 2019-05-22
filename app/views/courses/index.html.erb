@@ -33,7 +33,7 @@
 
           <p>Location: <%= course.locations.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
-          <p> Created: <%= time_ago_in_words(course.created) %></p>
+          <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
             <%= link_to 'Edit', edit_course_path(course) %>
             <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>

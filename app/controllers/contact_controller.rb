@@ -11,7 +11,7 @@ class ContactController < ApplicationController
   
   def create     
     email = params[:contact][:email]
-
+    
     @debug = email 
     UserMailer.send_mail(email).deliver_now
     
