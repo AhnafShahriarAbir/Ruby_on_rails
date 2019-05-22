@@ -14,13 +14,7 @@
     </div>
   <% end %>
 
-#save the user here
   <%=form.hidden_field :user_id, value: current_user.id %>
-
-
-
-
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :course_name %>
