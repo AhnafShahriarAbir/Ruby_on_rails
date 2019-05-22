@@ -38,11 +38,7 @@
       </p>
     </div>
 <% pre_like = @course.likes.find { |like| like.user_id == current_user.id} %>
-<% if pre_like %>
-  <%= button_to 'Unlike', course_like_path(@course, pre_like), method: :delete %>
-<% else %>
-  <%= button_to 'Like', course_likes_path(@course), method: :post %>
-<% end %>
+
 
 <p><%= @course.likes.count %> <%= (@course.likes.count) == 1 ? 'Like' : 'Likes'%></p> |
 

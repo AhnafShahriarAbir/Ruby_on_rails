@@ -37,16 +37,14 @@
 
             <%= link_to 'Edit', edit_course_path(course) %>
             <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-
-          <button type="button"
-            id="testBtn"
-            class="btn btn-success glyphicon glyphicon-thumbs-up"
-                  data-loading-text=" ... ">
-          4</button>
-      <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-          4</button>
         </div><br><br>
-
+        
+        <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', course_like_path(course, pre_like), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', course_likes_path(@courses), method: :post %>
+        <% end %>
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
   </div>
 
@@ -54,5 +52,3 @@
 <% end %>
 
 
-
-<%= link_to 'New Course', new_course_path %>
