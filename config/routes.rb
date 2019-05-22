@@ -21,5 +21,9 @@ Rails.application.routes.draw do
   end
   resources :users
 
+  resources :courses do
+    resources :likes
+  end
+
   resources :contact, only: [:new, :create, :edit ]
 end
