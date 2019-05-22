@@ -51,7 +51,7 @@
           <%= button_to 'Unlike', course_like_path(course, pre_like), method: :delete %>
         <% else %>
           <%= button_to 'Like', course_likes_path(course), method: :post %>
-          <%= button_to 'Unlike', course_like_path(course), method: :post %>
+          
         <% end %>
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
   </div>
