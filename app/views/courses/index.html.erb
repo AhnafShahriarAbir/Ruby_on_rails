@@ -1,12 +1,13 @@
 
 
 
-<p id="notice"><%= notice %></p>
-
 <h1>All Courses</h1>
 <%= render 'course_nav' %>
 
 
+<%# if current_user.admin? %>
+ <%#= button_to 'Reset votes', course_unlikes_path(@courses), method: :delete %>
+<%# end %>
 
 <% @courses.each do |course| %>
 
@@ -45,17 +46,33 @@
             <% end %>
           <% end %>
         </div><br><br>
-        
         <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
-        <% if pre_like %>
-          <%= button_to 'Unlike', course_like_path(course, pre_like), method: :delete %>
-        <% else %>
-          <%= button_to 'Like', course_likes_path(course), method: :post %>
+        <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+        <% if !pre_like || !pre_unlike%>
+           <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+          </button>
+
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              </span><%= button_to 'UnLike', course_unlikes_path(course), method: :post %>
+          </button>
           
+          <% else %>
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+          </button>
+
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              <%= button_to 'UnLike', course_unlikes_path(course), method: :post %></span>
+          </button>
         <% end %>
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
   </div>
-
 </div>
 <% end %>
 

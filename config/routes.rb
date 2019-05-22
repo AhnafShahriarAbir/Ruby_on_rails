@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :likes
+    resources :unlikes
   end
 
   resources :contact, only: [:new, :create, :edit ]
