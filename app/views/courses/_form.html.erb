@@ -2,39 +2,39 @@
 
 
 <%= form_with(model: course, local: true) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<%= render 'shared/error_messages0', object: @course %>
 
-      <ul>
-      <% course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-#save the user here
   <%=form.hidden_field :user_id, value: current_user.id %>
 
-
-
-
-
-  <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :course_name %>
-  </div>
+    <%= form.text_field :name, class: 'form-control' %>
 
-  <div class="field">
     <%= form.label :prerequisite %>
-    <%= form.text_area :prerequisite, id: :course_prerequisite %>
-  </div>
+    <%= form.text_area :prerequisite, class: 'form-control' %>
+
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
 
 
+<%= form.label :Category %>
+    <% Category.all.each do |category| %>
+       <%= category.name %>
+          <%= form.check_box :category_id,{ multiple: true }, category.id %>
+    <% end %>
+
+    <%= form.label :Location %>
+        <% Location.all.each do |location| %>
+           <%= location.name %>
+              <%= form.check_box :location_id,{ multiple: true }, location.id %>
+        <% end %>
+
+
+<<<<<<< HEAD
   
+=======
+>>>>>>> new-course-bootstrap
 
-  <div class="actions">
     <%= form.submit %>
-  </div>
+
 <% end %>

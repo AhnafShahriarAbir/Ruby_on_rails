@@ -102,10 +102,23 @@ class CoursesController < ApplicationController
   end
   redirect_to action: "categories", id: @course
   end
-  
+
   def roll
     @course = Course.find(params[:id])
   end
+
+
+# method for thumbs increase and decrease number
+def courses_thumbsup
+
+end
+
+def courses_thumbsdown
+
+end
+
+
+
 
 
   private
@@ -116,6 +129,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:user_id ,:name, :prerequisite, :category, :location, :created)
+      params.require(:course).permit(:user_id ,:name, :prerequisite,:description, :category, :location, :created)
     end
 end

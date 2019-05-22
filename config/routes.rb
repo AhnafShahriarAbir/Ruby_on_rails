@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       post :course_remove
       post :category_add
       post :category_remove
+      post :courses_thumbsup
+      post :courses_thumbsdown 
     end
   end
   resources :users

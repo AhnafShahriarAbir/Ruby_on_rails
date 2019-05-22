@@ -4,6 +4,15 @@ class Course < ApplicationRecord
   has_many :users
   has_many :likes, dependent: :destroy
 
+validates :name,  presence: true, length: { minimum: 10}
+validates :prerequisite,  presence: true, length: { minimum: 10}
+validates :description, presence: true, length: { minimum: 30}
+
+
+
+
+
+
   def enrolled_in?(category)
       self.categories.include?(category)
   end

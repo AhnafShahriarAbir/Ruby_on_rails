@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190522072147) do
+=======
+ActiveRecord::Schema.define(version: 20190520074408) do
+>>>>>>> new-course-bootstrap
 
   create_table "categories", force: :cascade do |t|
     t.string "name"

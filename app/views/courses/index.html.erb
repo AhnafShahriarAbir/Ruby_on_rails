@@ -12,27 +12,35 @@
 
 <div class="row">
 
-  <div class="col-md-4" >
+  <div class="col-md-3" >
 
     <%= gravatar_for User.find(course.user_id) %>
     <%=  User.find(course.user_id).name %>
 
 
-      </div><br><br>
+      </div>
 
 
-  </div>
 
-  <div class="col-md-8" >
+
+  <div class="col-md-9" >
 
       <div class="details" >
+
           <p>Name:  <%= link_to course.name, course %></p>
+
           <p>Category: <%= course.prerequisite %>
           <%= course.categories.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
 
+          <p>Description:  <%= course.description %></p>
+
           <p>Location: <%= course.locations.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> new-course-bootstrap
           <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
             <%= link_to 'Edit', edit_course_path(course) %>
@@ -45,7 +53,9 @@
           4</button>
       <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
           4</button>
-        </div><br><br>
+        </div>
+
+
 
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
   </div>
