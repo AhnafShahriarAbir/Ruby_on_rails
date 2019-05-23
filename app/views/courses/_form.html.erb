@@ -23,17 +23,11 @@
           <%= form.check_box :category_id,{ multiple: true }, category.id %>
     <% end %>
 
-    <%= form.label :Location %>
-        <% Location.all.each do |location| %>
+  <%= form.label :Location %>
+      <% Location.all.each do |location| %>
            <%= location.name %>
               <%= form.check_box :location_id,{ multiple: true }, location.id %>
         <% end %>
-
-
-<<<<<<< HEAD
-  
-=======
->>>>>>> new-course-bootstrap
 
     <%= form.submit %>
 
