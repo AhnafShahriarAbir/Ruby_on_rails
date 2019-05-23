@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   has_and_belongs_to_many :locations, dependent: :destroy
   has_many :users
   has_many :likes, dependent: :destroy
+  has_many :unlikes, dependent: :destroy
 
 validates :name,  presence: true, length: { minimum: 10}
 validates :prerequisite,  presence: true, length: { minimum: 10}

@@ -1,12 +1,13 @@
 
 
 
-<p id="notice"><%= notice %></p>
-
 <h1>All Courses</h1>
 <%= render 'course_nav' %>
 
 
+<%# if current_user.admin? %>
+ <%#= button_to 'Reset votes', course_unlikes_path(@courses), method: :delete %>
+<%# end %>
 
 <% @courses.each do |course| %>
 
@@ -28,8 +29,8 @@
       <div class="details" >
 
           <p>Name:  <%= link_to course.name, course %></p>
-
-          <p>Category: <%= course.prerequisite %>
+          <p>Prerequisite: <%= course.prerequisite %></p>
+          <p>Category:
           <%= course.categories.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
 
@@ -37,32 +38,43 @@
 
           <p>Location: <%= course.locations.collect {|c|
               link_to( c.name, c)}.join(", ").html_safe %></p>
-<<<<<<< HEAD
-=======
-
->>>>>>> new-course-bootstrap
           <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
-            <%= link_to 'Edit', edit_course_path(course) %>
-            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <% if logged_in? %>
+            <% if current_user.admin? || current_user == User.find(course.user_id) %>
+              <%= link_to 'Edit', edit_course_path(course) %>
+                <% if current_user.admin? %>
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div><br><br>
+        <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
+        <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+        <% if !pre_like || !pre_unlike%>
+           <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+          </button>
 
-          <button type="button"
-            id="testBtn"
-            class="btn btn-success glyphicon glyphicon-thumbs-up"
-                  data-loading-text=" ... ">
-          4</button>
-      <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-          4</button>
-        </div>
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              </span><%= button_to 'UnLike', course_unlikes_path(course), method: :post %>
+          </button>
 
+          <% else %>
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+          </button>
 
-
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              <%= button_to 'UnLike', course_unlikes_path(course), method: :post %></span>
+          </button>
+        <% end %>
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
   </div>
-
 </div>
 <% end %>
-
-
-
-<%= link_to 'New Course', new_course_path %>
