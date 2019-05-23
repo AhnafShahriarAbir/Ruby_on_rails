@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20190522072147) do
-=======
-ActiveRecord::Schema.define(version: 20190520074408) do
->>>>>>> new-course-bootstrap
-=======
-ActiveRecord::Schema.define(version: 20190522155350) do
->>>>>>> 6893d9567b7acbfaf799b800e7b04d1b92237801
+ActiveRecord::Schema.define(version: 20190523074341) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -51,9 +43,9 @@ ActiveRecord::Schema.define(version: 20190522155350) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description"
     t.integer "thumbsup"
     t.integer "thumbsdown"
+    t.string "description"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 

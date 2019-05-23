@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   protect_from_forgery with: :exception
   include SessionsHelper
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  
 
   def index
   	@courses = Course.all
