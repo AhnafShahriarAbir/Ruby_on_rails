@@ -82,11 +82,11 @@
               </span><%= link_to '  UnLike', login_path %>
           </button>
           
-        <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-        <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
+        
        </div><br><br>
        <% end %>
-       
+       <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
   </div>
 </div>
 <% end %>

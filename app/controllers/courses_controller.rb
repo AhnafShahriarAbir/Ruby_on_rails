@@ -1,7 +1,19 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :destroy]
- 
   skip_before_action :verify_authenticity_token
+
+  def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
+  end
 
   # GET /courses
   # GET /courses.json
