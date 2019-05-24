@@ -20,10 +20,6 @@
 
 
       </div>
-
-
-
-
   <div class="col-md-9" >
 
       <div class="details" >
@@ -40,41 +36,57 @@
               link_to( c.name, c)}.join(", ").html_safe %></p>
           <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
-          <% if logged_in? %>
+      <% if logged_in? %>
             <% if current_user.admin? || current_user == User.find(course.user_id) %>
               <%= link_to 'Edit', edit_course_path(course) %>
                 <% if current_user.admin? %>
                     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-              <% end %>
+                <% end %>
             <% end %>
-          <% end %>
-        </div><br><br>
+          
+
+       
+        
         <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
         <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
         <% if !pre_like || !pre_unlike%>
            <button type="submit" class="btn btn-success btn-lg">
-            <span class = "glyphicon glyphicon-thumbs-up">
-              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+            <span class = "glyphicon glyphicon-thumbs-up"></span>
+              <%= link_to 'Like', course_likes_path(course), method: :post %>
           </button>
 
           <button type="submit" class="btn btn-success btn-lg">
             <span class = "glyphicon glyphicon-thumbs-down">
-              </span><%= button_to 'UnLike', course_unlikes_path(course), method: :post %>
+              </span><%= link_to 'UnLike', course_unlikes_path(course), method: :post %>
           </button>
 
           <% else %>
-          <button type="submit" class="btn btn-success btn-lg">
-            <span class = "glyphicon glyphicon-thumbs-up">
-              <%= button_to 'Like', course_likes_path(course), method: :post %></span>
+           <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up"></span>
+              <%= link_to 'Like', course_likes_path(course), method: :post %>
           </button>
 
           <button type="submit" class="btn btn-success btn-lg">
             <span class = "glyphicon glyphicon-thumbs-down">
-              <%= button_to 'UnLike', course_unlikes_path(course), method: :post %></span>
+              </span><%= link_to 'UnLike', course_unlikes_path(course), method: :post %>
           </button>
         <% end %>
+        <%else%>
+         <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= link_to 'Like', login_path %></span>
+          </button>
+
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              </span><%= link_to '  UnLike', login_path %>
+          </button>
+          
         <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
         <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
+       </div><br><br>
+       <% end %>
+       
   </div>
 </div>
 <% end %>

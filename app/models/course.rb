@@ -10,10 +10,6 @@ validates :prerequisite,  presence: true, length: { minimum: 10}
 validates :description, presence: true, length: { minimum: 30}
 
 
-
-
-
-
   def enrolled_in?(category)
       self.categories.include?(category)
   end

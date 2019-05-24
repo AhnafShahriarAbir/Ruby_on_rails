@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :destroy]
+ 
   skip_before_action :verify_authenticity_token
 
   # GET /courses
@@ -106,19 +107,6 @@ class CoursesController < ApplicationController
   def roll
     @course = Course.find(params[:id])
   end
-
-
-# method for thumbs increase and decrease number
-def courses_thumbsup
-
-end
-
-def courses_thumbsdown
-
-end
-
-
-
 
 
   private

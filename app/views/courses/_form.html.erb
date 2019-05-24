@@ -18,10 +18,16 @@
 
 
 <%= form.label :Category %>
+<table>
+	<tbody>
     <% Category.all.each do |category| %>
-       <%= category.name %>
-          <%= form.check_box :category_id,{ multiple: true }, category.id %>
-    <% end %>
+      <tr> <td> <%= category.name %>
+          <td>  <%= form.check_box :category_id,{ multiple: true }, category.id %>
+          </tr>
+          <% end %>
+  </tbody>
+</table > <br />
+    
 
   <%= form.label :Location %>
       <% Location.all.each do |location| %>

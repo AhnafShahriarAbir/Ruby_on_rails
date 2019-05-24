@@ -39,12 +39,9 @@ ActiveRecord::Schema.define(version: 20190523074341) do
     t.text "prerequisite"
     t.string "category"
     t.string "location"
-    t.datetime "created"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "thumbsup"
-    t.integer "thumbsdown"
     t.string "description"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end

@@ -11,6 +11,7 @@
         <%= gravatar_for user %><br>
         <p>Coordinator name: <%= user.name %></p>
         <% if current_user.admin? && !current_user?(user) %>
+            <%= link_to 'Edit', edit_user_path(user) %>
             | <%= link_to "delete", user, method: :delete,
                                       data: { confirm: "You sure?" } %>
         <% end %>
