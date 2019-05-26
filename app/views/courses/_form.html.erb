@@ -20,20 +20,24 @@
 <%= form.label :Category %>
 <table>
 	<tbody>
-    <% Category.all.each do |category| %>
-      <tr> <td> <%= category.name %>
-          <td>  <%= form.check_box :category_id,{ multiple: true }, category.id %>
-          </tr>
+        <% Category.all.each do |category| %>
+          <%= category.name %>
+           <%= form.check_box :category_id,{ multiple: true }, category.id %>
           <% end %>
   </tbody>
-</table > <br />
-    
+</table >
+
 
   <%= form.label :Location %>
       <% Location.all.each do |location| %>
            <%= location.name %>
               <%= form.check_box :location_id,{ multiple: true }, location.id %>
         <% end %>
+
+
+      <%= form.label "course photo" %>
+      <%= form.file_field :avatar, class: 'form-control'  %>
+
 
     <%= form.submit %>
 

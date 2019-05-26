@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   has_many :users
   has_many :likes, dependent: :destroy
   has_many :unlikes, dependent: :destroy
+  has_one_attached :avatar
 
 validates :name,  presence: true, length: { minimum: 10}
 validates :prerequisite,  presence: true, length: { minimum: 10}
