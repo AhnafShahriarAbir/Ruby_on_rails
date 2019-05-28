@@ -47,11 +47,12 @@
           <%= time_ago_in_words(@course.created_at) %>
       </p>
          </div>
+
       <% if logged_in? %>
           <% if current_user.admin? || current_user == User.find(@course.user_id) %>
             <%= link_to 'Edit', edit_course_path(@course), class:'white-text btn btn-success btn-lg' %>
               <% if current_user.admin? %>
-            
+
                   <%# <%= button_to 'Reset votes', course.like, method: :delete %>
 
                   <%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
@@ -71,12 +72,11 @@
         <% else %>
           <%= link_to 'Like', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
           <%= link_to 'UnLike', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
-    
+
       <% end %>
     <p><%= @course.likes.count %> <%= (@course.likes.count) == 1 || 0 ? 'Like' : 'Likes'%></p>
     <p><%= @course.unlikes.count %> <%= (@course.unlikes.count) == 1 || 0 ? 'Unlike' : 'Unlikes'%></p>
-  
-   
+
 </div>
 
 
@@ -86,4 +86,3 @@
 
   <%end%>
 </div>
-

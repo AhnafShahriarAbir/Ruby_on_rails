@@ -28,14 +28,14 @@
           <p>Name:  <%= link_to course.name, course %></p>
           <p>Prerequisite: <%= course.prerequisite %></p>
           <p>Category:
-            
+
             <% if !course.categories.empty? %>
               <%= course.categories.collect {|c|
                 link_to( c.name, c)}.join(", ").html_safe %>
             <% else %>
               Not added to any category yet.
             <% end %>
-            
+
             <p> Locations:
                 <% if !course.locations.empty? %>
                   <%= course.locations.collect {|c|
@@ -44,7 +44,15 @@
                 No location added to this course.
                 <% end %>
               </p>
+
+          
+
+
           <p> Created: <%= time_ago_in_words(course.created_at) %></p>
+
+
+
+
 
       <% if logged_in? %>
             <% if current_user.admin? || current_user == User.find(course.user_id) %>
