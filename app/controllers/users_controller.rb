@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @users = User.all
+    @user = User.find(params[:id])
   end
 
   def new
@@ -55,6 +55,11 @@ class UsersController < ApplicationController
       end
   end
 
+  def courses
+    @user = User.find(course.user_id)
+    @courses = @user.courses
+  end
+
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless @user == current_user
@@ -65,6 +70,7 @@ class UsersController < ApplicationController
   end
 
   private
+     
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)

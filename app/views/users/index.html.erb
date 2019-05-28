@@ -2,20 +2,16 @@
 
 
 <h1>All Users</h1>
-<%= render 'course_nav' %>
+
 
    <% @users.each do |user| %>
   <div class="row">
     <div class="col-md-8" >
 
         <%= gravatar_for user %><br>
-        <p>Coordinator name: <%= user.name %></p>
-        <% if current_user.admin? && !current_user?(user) %>
-            | <%= link_to "delete", user, method: :delete,
-                                      data: { confirm: "You sure?" } %>
-        <% end %>
 
-    
+        <p>Coordinator name: <%= user.name %></p>
+        
 
      <br><br>
     </div>

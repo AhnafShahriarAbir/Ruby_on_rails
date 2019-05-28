@@ -11,11 +11,9 @@
         <p>Location: <%= link_to location.name, location %></p>
         <p>Courses: <%= location.courses.collect {|c| 
         link_to( c.name, c)}.join(",").html_safe %></p>
-        <p><%= link_to 'Edit', edit_location_path(location) %></p>
-        <p><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        
       </div> <br><br>
     </div>
   </div>
 <% end %>
 
-<%= link_to 'New Location', new_location_path %>
