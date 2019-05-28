@@ -35,3 +35,14 @@ Heroku url: https://stormy-journey-10009.herokuapp.com
 
 
 
+Heroku Lo
+2019-05-28T13:56:37.656344+00:00 app[web.1]: D, [2019-05-28T13:56:37.656223 #4] DEBUG -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "unlikes" WHERE "unlikes"."course_id" = $1[0m  [["course_id", 3]]
+2019-05-28T13:56:37.656563+00:00 app[web.1]: I, [2019-05-28T13:56:37.656500 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   Rendered courses/index.html.erb within layouts/application (65.1ms)
+2019-05-28T13:56:37.657681+00:00 app[web.1]: I, [2019-05-28T13:56:37.657619 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   Rendered layouts/_rails_default.html.erb (0.8ms)
+2019-05-28T13:56:37.657955+00:00 app[web.1]: I, [2019-05-28T13:56:37.657894 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   Rendered layouts/_shim.html.erb (0.0ms)
+2019-05-28T13:56:37.658798+00:00 app[web.1]: D, [2019-05-28T13:56:37.658733 #4] DEBUG -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+2019-05-28T13:56:37.744903+00:00 app[web.1]: D, [2019-05-28T13:56:37.744767 #4] DEBUG -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   [1m[36mCategory Load (1.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+2019-05-28T13:56:37.746784+00:00 app[web.1]: D, [2019-05-28T13:56:37.746707 #4] DEBUG -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+2019-05-28T13:56:37.747633+00:00 app[web.1]: I, [2019-05-28T13:56:37.747569 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   Rendered layouts/_header.html.erb (89.4ms)
+2019-05-28T13:56:37.748107+00:00 app[web.1]: I, [2019-05-28T13:56:37.748045 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9]   Rendered layouts/_footer.html.erb (0.1ms)
+2019-05-28T13:56:37.748542+00:00 app[web.1]: I, [2019-05-28T13:56:37.748479 #4]  INFO -- : [f7aa0eb7-98e1-4eec-8606-68d895fa8df9] Completed 200 OK in 158ms (Views: 127.6ms | ActiveRecord: 29.9ms)
