@@ -58,42 +58,7 @@
         <%else%>
           <%= link_to 'Like', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
           <%= link_to 'UnLike', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
-          
-        
-            <% if !pre_like || !pre_unlike %>
-                <button type="submit" class="btn btn-success btn-lg">
-                  <span class = "glyphicon glyphicon-thumbs-up"></span>
-                    <%= link_to 'Like', course_likes_path(course), method: :post %>
-                </button>
 
-                <button type="submit" class="btn btn-success btn-lg">
-                  <span class = "glyphicon glyphicon-thumbs-down">
-                    </span><%= link_to 'UnLike', course_unlikes_path(course), method: :post %>
-                </button>
-
-            <% else %>
-                  <button type="submit" class="btn btn-success btn-lg">
-                    <span class = "glyphicon glyphicon-thumbs-up"></span>
-                      <%= link_to 'Like', course_likes_path(course), method: :post %>
-                  </button>
-
-                  <button type="submit" class="btn btn-success btn-lg">
-                    <span class = "glyphicon glyphicon-thumbs-down">
-                      </span><%= link_to 'UnLike', course_unlikes_path(course), method: :post %>
-                  </button>
-           <% end %>
-
-      <% else %>
-        <button type="submit" class="btn btn-success btn-lg">
-          <span class = "glyphicon glyphicon-thumbs-up">
-            <%= link_to 'Like', login_path %></span>
-        </button>
-
-        <button type="submit" class="btn btn-success btn-lg">
-          <span class = "glyphicon glyphicon-thumbs-down">
-            </span><%= link_to '  UnLike', login_path %>
-        </button>
-     
       <% end %>
     <p><%= course.likes.count %> <%= (course.likes.count) == 1 || 0 ? 'Like' : 'Likes'%></p>
     <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 || 0 ? 'Unlike' : 'Unlikes'%></p>
