@@ -3,13 +3,12 @@
   <div class="container">
     <% if logged_in? %>
         <%= link_to "yourcourse", courses_path, id: "logo" %>
-    
+
     <%else%>
       <%= link_to "yourcourse", root_path, id: "logo" %>
     <%end%>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-
 
         <li class="dropdown" id = "menuselection">
           <a href= "#" class="dropdown-toggle" data-toggle="dropdown">
@@ -27,7 +26,6 @@
              <% end %>
           </ul>
         </li>
-
 
         <li class="dropdown" id = "menuselection">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,14 +65,13 @@
           </li>
         <% else %>
            <li id = "menuselection">
-               <%= link_to "Log In", login_path %> 
+               <%= link_to "Log In", login_path %>
                </li>
         <% end %>
 
-
-
-
       </ul>
-      </nav>
-      </div>
-      </header>
+    </nav>
+  </div>
+</header>
+
+<br><br><br>

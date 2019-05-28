@@ -4,9 +4,8 @@
 <h1>All Courses</h1>
 <%= render 'course_nav' %>
 
-
 <%# if current_user.admin? %>
- <%#= button_to 'Reset votes', course_unlikes_path(@courses), method: :delete %>
+<%#= button_to 'Reset votes', course_unlikes_path(@courses), method: :delete %>
 <%# end %>
 
 <% @courses.each do |course| %>
@@ -16,10 +15,12 @@
   <div class="col-md-3" >
 
     <%= gravatar_for User.find(course.user_id) %>
+    <div style="display:block">
     <%=  User.find(course.user_id).name %>
+    </div>
 
 
-      </div>
+  </div>
   <div class="col-md-9" >
 
       <div class="details" >
@@ -38,15 +39,15 @@
 
       <% if logged_in? %>
             <% if current_user.admin? || current_user == User.find(course.user_id) %>
-              <%= link_to 'Edit', edit_course_path(course) %>
+            <%= link_to 'Edit', edit_course_path(course) %>
                 <% if current_user.admin? %>
                     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
                 <% end %>
             <% end %>
-          
 
-       
-        
+
+
+
         <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
         <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
         <% if !pre_like || !pre_unlike%>
@@ -81,8 +82,8 @@
             <span class = "glyphicon glyphicon-thumbs-down">
               </span><%= link_to '  UnLike', login_path %>
           </button>
-          
-        
+
+
        </div><br><br>
        <% end %>
        <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1>All Coordinators</h1>
+<h1>All Users</h1>
 <%= render 'course_nav' %>
 
    <% @users.each do |user| %>
@@ -14,10 +14,10 @@
             | <%= link_to "delete", user, method: :delete,
                                       data: { confirm: "You sure?" } %>
         <% end %>
+
+    
+
      <br><br>
     </div>
   </div>
 <% end %>
-
-
-

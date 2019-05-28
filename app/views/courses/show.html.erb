@@ -3,7 +3,7 @@
 
 <div class="col-md-8" >
 
-      <div class="details" >
+    <div class="details" >
       <p>
         <strong>Name:</strong>
         <%= @course.name %>
@@ -43,7 +43,8 @@
 
 <div class="col-md-4" >
   <% if @course.avatar.attached? %>
-        <image src="<%= (url_for(@course.avatar))%>">
+        <image height="200" width="200" src="<%= (url_for(@course.avatar))%>">
+
   <%end%>
 </div>
 
