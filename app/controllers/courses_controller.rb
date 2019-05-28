@@ -81,6 +81,11 @@ class CoursesController < ApplicationController
     @categories = @course.categories
   end
 
+  def likes 
+    @likes = Like.all
+    @likes.destroy
+  end
+
   def category_add
   #Convert ids from routing to objects
     @course = Course.find(params[:id])

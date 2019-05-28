@@ -12,12 +12,7 @@ class LikesController < ApplicationController
     end
 
     def destroy
-        if !(already_liked?)
-            flash[:notice] = "Cannot unlike"
-        else
-            @likes.destroy
-        end
-        redirect_to course_path(@course)
+        @likes.destroy
     end
 
     def find_like
