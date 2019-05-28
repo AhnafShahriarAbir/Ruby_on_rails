@@ -1,63 +1,56 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Courses scheduled in location <%= @location.name %> </h1>
+<h1>location</h1>
 
-<p>
-  <strong>Locations:</strong>
-    <% if !@location.courses.empty? %>
-      <%= @location.courses.collect {|c|
-        link_to( c.name, c)}.join(",").html_safe %>
-    <% else %>
-      No courses assigned on this room yet.
-    <% end %>
-</p>
+<div class="col-md-8" >
 
+      <div class="details" >
+      <p>
+        <strong>Name:</strong>
+        <%= @location.name %>
+      </p>
 
+      <p>
+        <strong>Prerequisite:</strong>
+        <%= @location.prerequisite %>
+      </p>
 
-<% if @location.courses.empty? %>
-  <h4 style="text-align: center;">No courses are allocated to this location.</h4>
+      <p>
+        <strong>Category:</strong>
 
-<% else %>
-  <% @location.courses.each do |course| %>
+          <% if !@location.categories.empty? %>
+            <%= @location.categories.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+            Not added to any category yet.
+          <% end %>
 
-  <div class="row">
+      </p>
 
-    <div class="col-md-4">
-      <div class="gravatardetails" >
-        <%= gravatar_for User.find(course.user_id) %>
-        <%=  User.find(course.user_id).name %>
+      <p>
+        <strong>Location:</strong>
+        <%= @location.location %>
+      </p>
 
-        </div><br><br>
+      <p>
+        <strong>Created:</strong>
+        <%= @location.created_at %>
+      </p>
+
     </div>
 
-    <div class="col-md-8" >
+</div>
 
-        <div class="details" >
-            <p> <%= link_to course.name, course %></p>
-            <p>Prerequisite: </p>
-            <p>Category: <%= course.prerequisite %>
-            <%= course.categories.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
 
-            <p>Location: <%= course.locations.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
-            <p><%= time_ago_in_words(course.created) +" ago" %></p>
-            <div class="float-right" >
-              <button type="button"
-                id="testBtn"
-                class="btn btn-success glyphicon glyphicon-thumbs-up "
-                      data-loading-text=" ... ">
-              4</button>
-              <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-              4</button>
-            </div>
-        </div><br><br>
-    </div>
-  </div>
-  <% end %>
+<div class="col-md-4" >
+  <% if @location.avatar.attached? %>
+        <image src="<%= (url_for(@location.avatar))%>">
+  <%end%>
+</div>
 
-<% end %>
+
+
+
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Add courses ', courses_location_path(@location) %> |
+<%= link_to 'Add to Category', categories_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
