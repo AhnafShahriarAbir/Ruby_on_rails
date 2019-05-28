@@ -1,58 +1,90 @@
 
 
 
-<p id="notice"><%= notice %></p>
-
 <h1>All Courses</h1>
 <%= render 'course_nav' %>
 
-
+<%# if current_user.admin? %>
+<%#= button_to 'Reset votes', course_unlikes_path(@courses), method: :delete %>
+<%# end %>
 
 <% @courses.each do |course| %>
 
 <div class="row">
 
-  <div class="col-md-4" >
+  <div class="col-md-3" >
 
     <%= gravatar_for User.find(course.user_id) %>
+    <div style="display:block">
     <%=  User.find(course.user_id).name %>
-
-
-      </div><br><br>
+    </div>
 
 
   </div>
-
-  <div class="col-md-8" >
+  <div class="col-md-9" >
 
       <div class="details" >
+
           <p>Name:  <%= link_to course.name, course %></p>
-          <p>Category: <%= course.prerequisite %>
-          <%= course.categories.collect {|c|
-              link_to( c.name, c)}.join(", ").html_safe %></p>
+          <p>Prerequisite: <%= course.prerequisite %></p>
+          <p>Category:
+            
+            <% if !course.categories.empty? %>
+              <%= course.categories.collect {|c|
+                link_to( c.name, c)}.join(", ").html_safe %>
+            <% else %>
+              Not added to any category yet.
+            <% end %>
+            
+            <p> Locations:
+                <% if !course.locations.empty? %>
+                  <%= course.locations.collect {|c|
+                    link_to( c.name, c)}.join(", ").html_safe %>
+                <% else %>
+                No location added to this course.
+                <% end %>
+              </p>
+          <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
-          <p>Location: <%= course.locations.collect {|c|
-              link_to( c.name, c)}.join(", ").html_safe %></p>
-          <p> Created: <%= time_ago_in_words(course.created) %></p>
+      <% if logged_in? %>
+            <% if current_user.admin? || current_user == User.find(course.user_id) %>
+              <%= link_to 'Edit', edit_course_path(course), class:'white-text btn btn-success btn-lg'%>
+                <% if current_user.admin? %>
 
-            <%= link_to 'Edit', edit_course_path(course) %>
-            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                    <%# <%= button_to 'Reset votes', course.like, method: :delete %>
 
-          <button type="button"
-            id="testBtn"
-            class="btn btn-success glyphicon glyphicon-thumbs-up"
-                  data-loading-text=" ... ">
-          4</button>
-      <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-          4</button>
-        </div><br><br>
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                <% end %>
+            <% end %>
+
+        <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
+        <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+        <% if !pre_like || !pre_unlike%>
+          <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+
+          <% else %>
+           <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+           <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+        <% end %>
+        <%else%>
+         <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-up">
+              <%= link_to 'Like', login_path %></span>
+          </button>
+
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class = "glyphicon glyphicon-thumbs-down">
+              </span><%= link_to '  UnLike', login_path %>
+          </button>
 
 
+       </div><br><br>
+       <% end %>
+       <p><%= course.likes.count %> <%= (course.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 ? 'Unlike' : 'Unlikes'%></p>
   </div>
 
 </div>
+
 <% end %>
-
-
-
-<%= link_to 'New Course', new_course_path %>

@@ -10,20 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514223913) do
+ActiveRecord::Schema.define(version: 2019_05_26_044814) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "category"
-    t.string "location"
-    t.datetime "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories_courses", id: false, force: :cascade do |t|
-    t.integer "course_id", null: false
     t.integer "category_id", null: false
+    t.integer "course_id", null: false
+    t.index ["category_id", "course_id"], name: "index_categories_courses_on_category_id_and_course_id"
+    t.index ["course_id", "category_id"], name: "index_categories_courses_on_course_id_and_category_id"
   end
 
   create_table "coordinators", force: :cascade do |t|
@@ -37,25 +57,42 @@ ActiveRecord::Schema.define(version: 20190514223913) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.text "prerequisite"
-    t.string "category"
-    t.string "location"
-    t.datetime "created"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "courses_locations", id: false, force: :cascade do |t|
-    t.integer "location_id", null: false
     t.integer "course_id", null: false
+    t.integer "location_id", null: false
+    t.index ["course_id", "location_id"], name: "index_courses_locations_on_course_id_and_location_id"
+    t.index ["location_id", "course_id"], name: "index_courses_locations_on_location_id_and_course_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_likes_on_course_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.string "courses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "unlikes", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_unlikes_on_course_id"
+    t.index ["user_id"], name: "index_unlikes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,63 +1,74 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Courses scheduled in location <%= @location.name %> </h1>
+<h1>Courses in <%= @location.name %> </h1>
 
-<p>
-  <strong>Locations:</strong>
-    <% if !@location.courses.empty? %>
-      <%= @location.courses.collect {|c|
-        link_to( c.name, c)}.join(",").html_safe %>
-    <% else %>
-      No courses assigned on this room yet.
-    <% end %>
-</p>
-
-
-
-<% if @location.courses.empty? %>
+<%= render 'course_nav' %>
+<% if @location.courses.count < 1 %>
   <h4 style="text-align: center;">No courses are allocated to this location.</h4>
 
 <% else %>
-  <% @location.courses.each do |course| %>
+      <% @location.courses.each do |course| %>
+  <div class="col-md-3" >
 
-  <div class="row">
+    <%= gravatar_for User.find(course.user_id) %>
+    <%=  User.find(course.user_id).name %>
 
-    <div class="col-md-4">
-      <div class="gravatardetails" >
-        <%= gravatar_for User.find(course.user_id) %>
-        <%=  User.find(course.user_id).name %>
 
-        </div><br><br>
-    </div>
-
+      </div>
     <div class="col-md-8" >
+     <div class="details" >
+          <p>
 
-        <div class="details" >
-            <p> <%= link_to course.name, course %></p>
-            <p>Prerequisite: </p>
-            <p>Category: <%= course.prerequisite %>
+      <h4><%= link_to course.name, course %></h4>
+
+      <p>Prerequisite: <%= course.prerequisite %></p>
+       <strong>Category:</strong>
+          <% if !course.categories.empty? %>
             <%= course.categories.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+            Not added to any category yet.
+          <% end %>
+        </h4>
+        
+        <h4><strong>Location:</strong>
+         <% if !course.locations.empty? %>
+            <%= course.locations.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+           No location added to this course.
+          <% end %>
+        </h4>
+     <p>
+        Created: <%= time_ago_in_words(course.created_at) %>
+      </p>
+        <% if logged_in? %>
+            <% if current_user.admin? || current_user == User.find(course.user_id) %>
+              <%= link_to 'Edit', edit_course_path(course) %>
+                <% if current_user.admin? %>
+              
+                    <%# <%= button_to 'Reset votes', course.like, method: :delete %>
 
-            <p>Location: <%= course.locations.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
-            <p><%= time_ago_in_words(course.created) +" ago" %></p>
-            <div class="float-right" >
-              <button type="button"
-                id="testBtn"
-                class="btn btn-success glyphicon glyphicon-thumbs-up "
-                      data-loading-text=" ... ">
-              4</button>
-              <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-              4</button>
-            </div>
-        </div><br><br>
-    </div>
-  </div>
-  <% end %>
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                <% end %>
+            <% end %>
 
+        <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
+        <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+        <% if !pre_like || !pre_unlike%>
+          <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+
+          <% else %>
+           <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+           <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+        <% end %>
+        <%else%>
+          <%= link_to 'Like', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+    
+      <% end %>
+    <p><%= course.likes.count %> <%= (course.likes.count) == 1 || 0 ? 'Like' : 'Likes'%></p>
+    <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 || 0 ? 'Unlike' : 'Unlikes'%></p>
+   <% end %>
 <% end %>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Add courses ', courses_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
