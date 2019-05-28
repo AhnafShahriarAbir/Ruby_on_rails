@@ -35,44 +35,32 @@ ActiveRecord::Schema.define(version: 2019_05_26_044814) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "category"
-    t.string "location"
-    t.datetime "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories_courses", id: false, force: :cascade do |t|
-    t.integer "course_id", null: false
     t.integer "category_id", null: false
-  end
-
-  create_table "coordinators", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "course_id", null: false
+    t.index ["category_id", "course_id"], name: "index_categories_courses_on_category_id_and_course_id"
+    t.index ["course_id", "category_id"], name: "index_categories_courses_on_course_id_and_category_id"
   end
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.text "prerequisite"
-    t.string "category"
-    t.string "location"
-    t.datetime "created"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "thumbsup"
-    t.integer "thumbsdown"
     t.string "description"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "courses_locations", id: false, force: :cascade do |t|
-    t.integer "location_id", null: false
     t.integer "course_id", null: false
+    t.integer "location_id", null: false
+    t.index ["course_id", "location_id"], name: "index_courses_locations_on_course_id_and_location_id"
+    t.index ["location_id", "course_id"], name: "index_courses_locations_on_location_id_and_course_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -86,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_044814) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.string "courses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
