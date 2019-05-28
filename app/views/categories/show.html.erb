@@ -2,22 +2,64 @@
 
 <h1>Courses in <%= @category.name %> </h1>
 
+<%= render 'course_nav' %>
 <% if @category.courses.count < 1 %>
   <h4 style="text-align: center;">No courses are allocated to this category.</h4>
 
 <% else %>
-  
+      <% @category.courses.each do |course| %>
+  <div class="col-md-3" >
+
+    <%= gravatar_for User.find(course.user_id) %>
+    <%=  User.find(course.user_id).name %>
+
+
+      </div>
     <div class="col-md-8" >
      <div class="details" >
           <p>
-      <% @category.courses.each do |course| %>
-          <h4><a href="/courses/<%= course.id %>/"><%= course.name %> </a></h4>
-      <p>Prerequisite: <%= course.prerequisites %></p>
-      <h4>Categories: <% course.categories.each do |category| %></h4>
-       <h4><a href="/categories/<%= course.id %>/"><%= category.name %> </a></h4>
+
+      <h4><a href="/courses/<%= course.id %>/"><%= course.name %> </a></h4>
+      <p>Prerequisite: <%= course.prerequisite %></p>
+        <h4>Category: <% course.categories.each do |category| %>
+            <a href="/categories/<%= course.id %>/"><%= category.name %> </a>
+        <% end %>
+        </h4>
+        
+           <h4>Locations: <% course.locations.each do |location| %>
+               <a href="/locations/<%= course.id %>/"><%= location.name %> </a>
+                <% end %>
+        </h4>
+     <p>
+        Created: <%= time_ago_in_words(course.created_at) %>
+      </p>
+        <% if logged_in? %>
+            <% if current_user.admin? || current_user == User.find(course.user_id) %>
+              <%= link_to 'Edit', edit_course_path(course) %>
+                <% if current_user.admin? %>
+              
+                    <%# <%= button_to 'Reset votes', course.like, method: :delete %>
+
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                <% end %>
+            <% end %>
+
+        <% pre_like = course.likes.find { |like| like.user_id == current_user.id} %>
+        <% pre_unlike = course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+        <% if !pre_like || !pre_unlike%>
+          <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+
+          <% else %>
+           <%= link_to 'Like', course_likes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+           <%= link_to 'UnLike', course_unlikes_path(course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+        <% end %>
+        <%else%>
+          <%= link_to 'Like', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+    
       <% end %>
-      <% end %>
-
-
-
+    <p><%= course.likes.count %> <%= (course.likes.count) == 1 || 0 ? 'Like' : 'Likes'%></p>
+    <p><%= course.unlikes.count %> <%= (course.unlikes.count) == 1 || 0 ? 'Unlike' : 'Unlikes'%></p>
+   <% end %>
 <% end %>

@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+        format.json { render :show, status: :created, location: @courses }
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        format.json { render :show, status: :ok, location: @courses }
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -138,9 +138,10 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:user_id ,:name, :prerequisite, :description, :avatar)
+      params.require(:course).permit(:user_id ,:name, :prerequisite,:description,
+      {category_ids:[]},
+      {location_ids:[]},
+      :avatar)
     end
-
-
 
 end

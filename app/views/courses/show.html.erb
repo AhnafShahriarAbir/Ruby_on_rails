@@ -1,9 +1,15 @@
 
-<h1>Course</h1>
+<h1> Course: <%= @course.name %> </h1>
 
-<div class="col-md-8" >
+  <div class="col-md-3" >
 
-    <div class="details" >
+    <%= gravatar_for User.find(@course.user_id) %>
+    <%=  User.find(@course.user_id).name %>
+
+
+      </div>
+    <div class="col-md-8" >
+     <div class="details" >
       <p>
         <strong>Name:</strong>
         <%= @course.name %>
@@ -27,17 +33,50 @@
       </p>
 
       <p>
-        <strong>Location:</strong>
-        <%= @course.location %>
+         <strong>Location:</strong>
+         <% if !@course.locations.empty? %>
+            <%= @course.locations.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+           No location added to this course.
+          <% end %>
       </p>
 
       <p>
         <strong>Created:</strong>
-        <%= @course.created_at %>
+          <%= time_ago_in_words(@course.created_at) %>
       </p>
+         </div>
+      <% if logged_in? %>
+          <% if current_user.admin? || current_user == User.find(@course.user_id) %>
+            <%= link_to 'Edit', edit_course_path(@course), class:'white-text btn btn-success btn-lg' %>
+              <% if current_user.admin? %>
+            
+                  <%# <%= button_to 'Reset votes', course.like, method: :delete %>
 
-    </div>
+                  <%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+              <% end %>
+           <% end %>
 
+        <% pre_like = @course.likes.find { |like| like.user_id == current_user.id} %>
+        <% pre_unlike = @course.unlikes.find { |unlike| unlike.user_id == current_user.id} %>
+            <% if !pre_like || !pre_unlike%>
+              <%= link_to 'Like', course_likes_path(@course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+              <%= link_to 'UnLike', course_unlikes_path(@course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+
+            <% else %>
+              <%= link_to 'Like', course_likes_path(@course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+              <%= link_to 'UnLike', course_unlikes_path(@course), method: :post, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+             <% end %>
+        <% else %>
+          <%= link_to 'Like', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-up' %>
+          <%= link_to 'UnLike', login_path, class:'white-text btn btn-success btn-lg glyphicon glyphicon-thumbs-down' %>
+    
+      <% end %>
+    <p><%= @course.likes.count %> <%= (@course.likes.count) == 1 || 0 ? 'Like' : 'Likes'%></p>
+    <p><%= @course.unlikes.count %> <%= (@course.unlikes.count) == 1 || 0 ? 'Unlike' : 'Unlikes'%></p>
+  
+   
 </div>
 
 
@@ -48,10 +87,3 @@
   <%end%>
 </div>
 
-
-
-
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Add to Category', categories_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
