@@ -42,3 +42,13 @@ Course.create!(name: "Further programming",
               location: "14.12.12",
               user_id: 2)
 
+Category.create!(name: "Web Development")
+Category.create!(name: "Java")
+Category.create!(name: "Full Stack Dev")
+Category.create!(name: "iOs Engineering")
+
+
+Location.create!(name: "14.10.31")
+Location.create!(name: "14.06.21")
+Location.create!(name: "14.10.30")
+
