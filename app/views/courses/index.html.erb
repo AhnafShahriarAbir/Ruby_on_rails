@@ -22,19 +22,27 @@
           <p>Name:  <%= link_to course.name, course %></p>
           <p>Prerequisite: <%= course.prerequisite %></p>
           <p>Category:
-            <% course.categories.each do |category| %>
-              <a href="/categories/<%= category.id %>/"><%= category.name %></a>
-              <% end %></p>
+            
+            <% if !course.categories.empty? %>
+              <%= course.categories.collect {|c|
+                link_to( c.name, c)}.join(", ").html_safe %>
+            <% else %>
+              Not added to any category yet.
+            <% end %>
+            
             <p> Locations:
-                <% course.locations.each do |location| %>
-              <a href="/locations/<%= course.id %>/"><%= location.name %></a>
-              <% end %>
+                <% if !course.locations.empty? %>
+                  <%= course.locations.collect {|c|
+                    link_to( c.name, c)}.join(", ").html_safe %>
+                <% else %>
+                No location added to this course.
+                <% end %>
               </p>
           <p> Created: <%= time_ago_in_words(course.created_at) %></p>
 
       <% if logged_in? %>
             <% if current_user.admin? || current_user == User.find(course.user_id) %>
-              <%= link_to 'Edit', edit_course_path(course) %>
+              <%= link_to 'Edit', edit_course_path(course), class:'white-text btn btn-success btn-lg'%>
                 <% if current_user.admin? %>
               
                     <%# <%= button_to 'Reset votes', course.like, method: :delete %>
