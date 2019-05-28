@@ -6,35 +6,22 @@
   <h4 style="text-align: center;">No courses are allocated to this category.</h4>
 
 <% else %>
-  <% @category.courses.each do |course| %>
-  <%= render 'category.nav' %>
+  <%#= render 'category.nav' %>
   <div class="row">
 
  
-
     <div class="col-md-8" >
 
         <div class="details" >
-            <p>Name:  <%= link_to course.name, course %></p>
-            <p>Category: <%= course.prerequisite %>
-            <%= course.categories.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
+            <p>Name:  <%#= course.name  %></p>
+            <%# <p>Prerequisite: </p><%= @course.prerequisite %>
+            <p>Category: <%#= @course.category.map&(:name).join(',') %>
             
-            <p>Location: <%= course.locations.collect {|c|
-                link_to( c.name, c)}.join(", ").html_safe %></p>
-            <p> Created: <%= time_ago_in_words(course.created) %></p>
-            <div class="float-right" >
-              <button type="button" 
-                id="testBtn" 
-                class="btn btn-success glyphicon glyphicon-thumbs-up "  
-                      data-loading-text=" ... ">
-              4</button>
-              <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-              4</button>
+            <p> Created: <%#= time_ago_in_words(@course.created) %></p>
+   
             </div>
         </div><br><br>
     </div>
   </div>
-  <% end %>
 
 <% end %>
