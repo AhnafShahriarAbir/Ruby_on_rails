@@ -1,8 +1,8 @@
 class CreateCoursesLocations < ActiveRecord::Migration[5.1]
   def change
-    create_table :courses_locations, id: false do |t|
-    	t.integer :location_id, null: false
-		t.integer :course_id, null: false
+    create_join_table :courses, :locations do |t|
+    	t.index [:course_id, :location_id]
+	  	t.index [:location_id, :course_id]
     end
   end
 end

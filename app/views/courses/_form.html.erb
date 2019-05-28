@@ -16,28 +16,29 @@
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
 
+    <%= form.label :categories %>
+            <% for category in Category.all %>
+            <%= category.name %>
+            <%= check_box_tag "course[category_ids][]", category.id,
+                @course.categories.include?(category) %>
+            <% end %>
 
-<%= form.label :Category %>
-<table>
-	<tbody>
-        <% Category.all.each do |category| %>
-          <%= category.name %>
-           <%= form.check_box :category_id,{ multiple: true }, category.id %>
-          <% end %>
-  </tbody>
-</table >
+          <%#= course.categories.map(&:name).join(', ') %>
+       
+          <p>Description:  <%= course.description %></p>
 
-
-  <%= form.label :Location %>
-      <% Location.all.each do |location| %>
-           <%= location.name %>
-              <%= form.check_box :location_id,{ multiple: true }, location.id %>
-        <% end %>
-
+          <p>Location: 
+         <%= form.label :locations %>
+              <% for location in Location.all %>
+              <%= location.name %>
+              <%= check_box_tag "course[location_ids][]", location.id,
+                  @course.locations.include?(location) %>
+              <% end %>
 
       <%= form.label "course photo" %>
       <%= form.file_field :avatar, class: 'form-control'  %>
 
+   
 
     <%= form.submit %>
 

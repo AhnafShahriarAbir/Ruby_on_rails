@@ -23,23 +23,22 @@ User.create!(name:  "Coordinator 3",
 
 Course.create!(name: "Java Programming",
               prerequisite: "Programming 1",
-              category: "Programming",
               description: "This is a Java programming Course. And this is a description section where description is written. ",
-              location: "12.12.12",
+ 
               user_id: 2)
 
 Course.create!(name: "Python Programming",
               prerequisite: "Programming 1",
-              category: "Programming",
+             
               description: "This is a Python programming Course. And this is a description section where description is written. ",
-              location: "12.12.12",
+             
               user_id: 3)
 
 Course.create!(name: "Further programming",
               prerequisite: "Programming 1",
-              category: "Programming",
+             
               description: "This is a Web programming Course. And this is a description section where description is written. ",
-              location: "14.12.12",
+             
               user_id: 2)
 
 Category.create!(name: "Web Development")
