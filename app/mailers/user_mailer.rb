@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.contact.subject
   #
   def send_mail(email)
-    mail to: email, subject: 'Welcome', body: 'body message'
+    mail to: "abir3577189@gmail.com", subject: 'Welcome', body: 'body message'
     
   end
 end
