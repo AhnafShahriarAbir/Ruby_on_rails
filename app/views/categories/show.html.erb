@@ -19,16 +19,25 @@
      <div class="details" >
           <p>
 
-      <h4><a href="/courses/<%= course.id %>/"><%= course.name %> </a></h4>
+      <h4><%= link_to course.name, course %></h4>
+
       <p>Prerequisite: <%= course.prerequisite %></p>
-        <h4>Category: <% course.categories.each do |category| %>
-            <a href="/categories/<%= course.id %>/"><%= category.name %> </a>
-        <% end %>
+       <strong>Category:</strong>
+          <% if !course.categories.empty? %>
+            <%= course.categories.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+            Not added to any category yet.
+          <% end %>
         </h4>
         
-           <h4>Locations: <% course.locations.each do |location| %>
-               <a href="/locations/<%= course.id %>/"><%= location.name %> </a>
-                <% end %>
+        <h4><strong>Location:</strong>
+         <% if !course.locations.empty? %>
+            <%= course.locations.collect {|c|
+              link_to( c.name, c)}.join(", ").html_safe %>
+          <% else %>
+           No location added to this course.
+          <% end %>
         </h4>
      <p>
         Created: <%= time_ago_in_words(course.created_at) %>
